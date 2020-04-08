@@ -1,0 +1,9 @@
+[submodule "lib/vst3sdk"]
+	path = lib/vst3sdk
+	url = https://github.com/steinbergmedia/vst3sdk.git
+[submodule "lib/uWebSockets"]
+	path = lib/uWebSockets
+	url = https://github.com/uNetworking/uWebSockets
+[submodule "lib/kfr"]
+	path = lib/kfr
+	url = https://github.com/kfrlib/kfr
