@@ -1,6 +1,7 @@
 #pragma once
 
 #include "public.sdk/source/vst/vsteditcontroller.h"
+#include "App.h"
 
 #if SMTG_OS_MACOS
 #include <TargetConditionals.h>
@@ -31,15 +32,12 @@ public:
 	static FUnknown* createInstance (void*) { return (IEditController*)new CoreController (); }
 
 	//---from IPluginBase--------
-	tresult PLUGIN_API initialize (FUnknown* context) SMTG_OVERRIDE;
+	tresult initialize (FUnknown* context) SMTG_OVERRIDE;
 
 //---from EditController-----
-#if TARGET_OS_IPHONE
-	IPlugView* PLUGIN_API createView (FIDString name) SMTG_OVERRIDE;
-#endif
-	tresult PLUGIN_API setComponentState (IBStream* state) SMTG_OVERRIDE;
+	tresult setComponentState (IBStream* state) SMTG_OVERRIDE;
 
-	bool PLUGIN_API doTest () SMTG_OVERRIDE;
+	bool doTest () SMTG_OVERRIDE;
 
 	//---Interface---------
 	OBJ_METHODS (CoreController, EditController)
@@ -47,8 +45,10 @@ public:
 		DEF_INTERFACE (ICoreTestController)
 	END_DEFINE_INTERFACES (EditController)
 	REFCOUNT_METHODS (EditController)
+
+private:
+  uWS::App webSocket;
 };
 
-//------------------------------------------------------------------------
 } // namespace Vst
 } // namespace Steinberg

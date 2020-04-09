@@ -21,7 +21,7 @@ CoreProcessor::CoreProcessor ()
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::initialize (FUnknown* context)
+tresult CoreProcessor::initialize (FUnknown* context)
 {
 	tresult result = AudioEffect::initialize (context);
 	if (result == kResultTrue)
@@ -33,7 +33,7 @@ tresult PLUGIN_API CoreProcessor::initialize (FUnknown* context)
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::setBusArrangements (SpeakerArrangement* inputs, int32 numIns, SpeakerArrangement* outputs, int32 numOuts)
+tresult CoreProcessor::setBusArrangements (SpeakerArrangement* inputs, int32 numIns, SpeakerArrangement* outputs, int32 numOuts)
 {
 	// we only support one in and output bus and these buses must have the same number of channels
 	if (numIns == 1 && numOuts == 1 && inputs[0] == outputs[0])
@@ -42,7 +42,7 @@ tresult PLUGIN_API CoreProcessor::setBusArrangements (SpeakerArrangement* inputs
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::setActive (TBool state)
+tresult CoreProcessor::setActive (TBool state)
 {
 	SpeakerArrangement arr;
 	if (getBusArrangement (kOutput, 0, arr) != kResultTrue)
@@ -79,7 +79,7 @@ tresult PLUGIN_API CoreProcessor::setActive (TBool state)
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::process (ProcessData& data)
+tresult CoreProcessor::process (ProcessData& data)
 {
 	if (data.inputParameterChanges)
 	{
@@ -143,7 +143,7 @@ tresult PLUGIN_API CoreProcessor::process (ProcessData& data)
 }
 
 //------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::setState (IBStream* state)
+tresult CoreProcessor::setState (IBStream* state)
 {
 	if (!state)
 		return kResultFalse;
@@ -168,7 +168,7 @@ tresult PLUGIN_API CoreProcessor::setState (IBStream* state)
 }
 
 //------------------------------------------------------------------------
-tresult PLUGIN_API CoreProcessor::getState (IBStream* state)
+tresult CoreProcessor::getState (IBStream* state)
 {
 	// here we need to save the model
 
